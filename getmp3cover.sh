@@ -30,7 +30,10 @@ if [ "$mp3_cover_http_link" == "" ]; then
     #2.2: find mp3 cover via album name
     #cat song.html | grep "三年二班<\/strong> - Album Version" -C10 | tail -n 1 | awk -F" " '{print $1}'
     ALBUM_NAME=`cat $SONG_FILE | grep "$ALBUM_KEYWORD$1" -C10 | tail -n 1 | awk -F" " '{print $1}'`
-
+    if [ "$ALBUM_NAME" == "" ]; then #some song need to shift to get correct album name
+        ALBUM_NAME=`cat $SONG_FILE | grep "$ALBUM_KEYWORD$1" -C11 | tail -n 1 | awk -F" " '{print $1}'`
+    fi
+    
     #3. Get the cover of album
     #curl -o album.html https://www.kkbox.com/tw/tc/search.php?search=mix&word=葉惠美&lang=tc
     #curl -o $ALBUM_FILE https://www.kkbox.com/tw/tc/search.php?search=mix&word=$ALBUM_NAME&lang=tc
