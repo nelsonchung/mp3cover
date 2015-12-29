@@ -2,6 +2,7 @@
 SONG_FILE="song.html"
 ALBUM_FILE="album.html"
 MP3_FILE="mp3cover.html"
+MP3_COVER_FILE="mp3_cover.jpg"
 ALBUM_KEYWORD="<\/strong> - Album Version"
 
 #0. Clear data
@@ -24,7 +25,10 @@ ALBUM_NAME=`cat $SONG_FILE | grep "$1$ALBUM_KEYWORD" -C10 | tail -n 1 | awk -F" 
 #3. Get the cover of album
 #curl -o album.html https://www.kkbox.com/tw/tc/search.php?search=mix&word=葉惠美&lang=tc
 #curl -o $ALBUM_FILE https://www.kkbox.com/tw/tc/search.php?search=mix&word=$ALBUM_NAME&lang=tc
+echo "Album name is "$ALBUM_NAME
 python getmp3cover.py $ALBUM_NAME 
 
 #4. Parse the mp3 cover link
-cat $MP3_FILE | grep $ALBUM_NAME | grep jpg
+mp3_cover_http_link=`cat $MP3_FILE | grep $ALBUM_NAME | grep jpg | awk -F"\"" '{print $2}'`
+echo "Mp3 cover http link is "$mp3_cover_http_link
+wget $mp3_cover_http_link -O $MP3_COVER_FILE 
