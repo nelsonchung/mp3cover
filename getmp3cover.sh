@@ -1,7 +1,5 @@
 #!/bin/bash
 source global_setting.sh
-#ALBUM_KEYWORD="<\/strong> - Album Version"
-ALBUM_KEYWORD="<strong class=\"keyword c1\">"
 SONG_INDEX_KEYWORD_START="alt=\""
 SONG_INDEX_KEYWORD_END="\""
 PYTHON_UTILITY_PATH="/home/cbn/Nelson/git/mp3cover/"
