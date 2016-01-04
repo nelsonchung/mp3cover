@@ -6,7 +6,10 @@ ls -al *.mp3 > $OUTPUT_FILE
 
 while read song_info
 do
-    TRACK_NUM=`cat $song_info | awk -F" " '{print $9}'`
-    SONG_NAME=`cat $song_info | awk -F" " '{print $10}'`
+    echo "song_info is $song_info"
+    TRACK_NUM=`echo $song_info | awk -F" " '{print $9}'`
+    echo "TRACK_NUM is $TRACK_NUM"
+    SONG_NAME=`echo $song_info | awk -F" " '{print $10}'`
+    echo "SONG_NAME is $SONG_NAME"
     setmp3info.sh $SONG_NAME $TRACK_NUM
 done < $OUTPUT_FILE
