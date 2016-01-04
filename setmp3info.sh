@@ -1,10 +1,14 @@
+#MP3 file format
+#01 三年二班.mp3
+#Run command
+#setmp3info.sh 三年二班 01
+
 source global_setting.sh
 SONG_NAME="$1"
-echo "Try to get $SONG_NAME mp3 file................................................................................................................"
+TRACK_NUM="$2"
+echo "Running $0 file......................................................................................."
 #0. Clear data
 rm $SONG_FILE 
-rm $ALBUM_FILE
-rm $MP3_FILE 
 
 #1. Get the information of song (三年二班)
 echo "1. Get the information of song"
@@ -33,4 +37,4 @@ if [ "$ALBUM_NAME" == "" ]; then #some song need to shift to get correct album n
 fi
 
 id3v2 -D $1".mp3"
-id3v2 -t $SONG_NAME -a $ARTIST_NAME -A $ALBUM_NAME NAME $1".mp3"
+id3v2 -t $SONG_NAME -a $ARTIST_NAME -A $ALBUM_NAME -T $TRACK_NUM $1".mp3"
