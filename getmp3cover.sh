@@ -2,7 +2,6 @@
 source global_setting.sh
 SONG_INDEX_KEYWORD_START="alt=\""
 SONG_INDEX_KEYWORD_END="\""
-PYTHON_UTILITY_PATH="/home/cbn/Nelson/git/mp3cover/"
 
 SONG_NAME="$1"
 echo "Try to get $SONG_NAME mp3 file................................................................................................................"
@@ -40,7 +39,7 @@ if [ "$mp3_cover_http_link" == "" ]; then
     #curl -o album.html https://www.kkbox.com/tw/tc/search.php?search=mix&word=葉惠美&lang=tc
     #curl -o $ALBUM_FILE https://www.kkbox.com/tw/tc/search.php?search=mix&word=$ALBUM_NAME&lang=tc
     echo "Album name is "$ALBUM_NAME
-    python $PYTHON_UTILITY_PATH"getmp3cover.py" $ALBUM_NAME 
+    python $PYTHON_UTILITY_PATH"/getmp3cover.py" $ALBUM_NAME 
 
 #4. Parse the mp3 cover link
     mp3_cover_http_link=`cat $MP3_FILE | grep $ALBUM_NAME | grep jpg | awk -F"\"" '{print $2}'`

@@ -21,7 +21,7 @@ rm $SONG_FILE
 #1. Get the information of song (三年二班)
 echo "1. Get the information of song"
 #curl -o $SONG_FILE https://www.kkbox.com/tw/tc/search.php?word=$SONG_NAME&search=song&
-python setmp3info.py $SONG_NAME 
+python $PYTHON_UTILITY_PATH"/setmp3info.py" $SONG_NAME 
 #We need to wait 3~5 seconds if we use curl utility
 sleep 5 
 
